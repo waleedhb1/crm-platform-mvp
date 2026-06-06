@@ -10,41 +10,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-  <div id="app" class="shell">
-    <aside class="sidebar">
-      <header class="brand">
-        <div class="brand-seal" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 28c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+<body class="layout-crm">
+  <div id="app" class="shell shell-crm">
+    <aside class="icon-rail" id="nav" aria-label="القائمة الرئيسية"></aside>
+    <div class="crm-main">
+      <header class="crm-banner">
+        <div class="banner-text">
+          <span class="banner-label">رابط CRM</span>
+          <h2 id="page-title" class="banner-title"></h2>
+          <p id="page-sub" class="banner-sub"></p>
         </div>
-        <div class="brand-text">
-          <span class="brand-org">رابط CRM</span>
-          <span class="brand-sys">منصة إدارة علاقات العملاء SaaS</span>
-        </div>
-      </header>
-      <nav id="nav" class="nav" aria-label="القائمة الرئيسية"></nav>
-      <div class="sidebar-meta">
-        <div class="term-pill">الربع الأول <span class="num">2026</span></div>
-        <label class="field-label" for="role-select">الدور الوظيفي</label>
-        <select id="role-select" class="select">
-          <option value="manager">مدير المبيعات</option>
-          <option value="rep">مندوب مبيعات</option>
-          <option value="admin">مسؤول النظام</option>
-        </select>
-      </div>
-    </aside>
-    <div class="workspace">
-      <header class="topbar">
-        <div class="topbar-start">
-          <nav class="breadcrumb" id="breadcrumb" aria-label="مسار التنقل"></nav>
-          <h1 id="page-title" class="page-title"></h1>
-          <p id="page-sub" class="page-sub"></p>
-        </div>
-        <div class="topbar-end">
+        <div class="banner-actions">
           <label class="search-field">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-            <input type="search" id="global-search" placeholder="بحث بالاسم أو الشركة أو الصفقة..." />
+            <input type="search" id="global-search" placeholder="بحث..." />
           </label>
+          <select id="role-select" class="select select-compact">
+            <option value="manager">مدير المبيعات</option>
+            <option value="rep">مندوب مبيعات</option>
+            <option value="admin">مسؤول النظام</option>
+          </select>
           <button type="button" class="icon-btn" id="notif-btn" aria-label="الإشعارات">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
             <span class="badge-count">6</span>
@@ -58,6 +43,7 @@
           </div>
         </div>
       </header>
+      <nav class="breadcrumb-bar" id="breadcrumb" aria-label="مسار التنقل"></nav>
       <main id="view" class="content"></main>
       <footer class="app-footer">
         <span>رابط CRM — حلول المبيعات B2B</span>

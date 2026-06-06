@@ -133,26 +133,17 @@ function showDealModal(deal) {
 }
 
 function renderNav() {
-  const sections = [
-    { label: "عام", items: [["dashboard", "لوحة المتابعة", ICONS.home]] },
-    { label: "المبيعات", items: [
-      ["leads", "العملاء المحتملون", ICONS.leads],
-      ["deals", "الصفقات", ICONS.deals],
-      ["contacts", "جهات الاتصال", ICONS.contacts],
-    ]},
-    { label: "الإنتاجية", items: [
-      ["tasks", "المهام", ICONS.tasks],
-    ]},
-    { label: "إدارة", items: [
-      ["reports", "التقارير", ICONS.chart],
-      ["settings", "الإعدادات", ICONS.settings],
-    ]},
+  const items = [
+    ["dashboard", "لوحة", ICONS.home],
+    ["leads", "عملاء", ICONS.leads],
+    ["deals", "صفقات", ICONS.deals],
+    ["contacts", "جهات", ICONS.contacts],
+    ["tasks", "مهام", ICONS.tasks],
+    ["reports", "تقارير", ICONS.chart],
+    ["settings", "إعدادات", ICONS.settings],
   ];
-  $("#nav").innerHTML = sections.map((sec) =>
-    `<div class="nav-section">${sec.label}</div>` +
-    sec.items.map(([id, label, icon]) =>
-      `<button class="nav-item${route === id ? " active" : ""}" data-r="${id}">${icon}${label}</button>`
-    ).join("")
+  $("#nav").innerHTML = items.map(([id, label, icon]) =>
+    `<button class="nav-item${route === id ? " active" : ""}" data-r="${id}" title="${label}">${icon}<span>${label}</span></button>`
   ).join("");
   $("#nav").querySelectorAll("[data-r]").forEach((b) => { b.onclick = () => { route = b.dataset.r; render(); }; });
 }

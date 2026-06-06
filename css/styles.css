@@ -469,3 +469,65 @@ tbody tr:hover td { background: var(--surface-alt); }
 .stage-summary-item .count { font-size: 11px; color: var(--text-secondary); }
 
 @media (max-width: 900px) { .stage-summary { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── Layout: CRM — سكة أيقونات يسار + بانر علوي ── */
+.layout-crm { background: #f0f4ff; }
+.shell-crm { flex-direction: row; min-height: 100vh; }
+.icon-rail {
+  width: 76px; background: #0f172a;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 16px 8px; gap: 6px; flex-shrink: 0;
+  border-left: 1px solid #1e293b;
+}
+.icon-rail .nav-section { display: none; }
+.icon-rail .nav-item {
+  width: 60px; flex-direction: column; gap: 4px;
+  padding: 10px 4px; border-radius: 10px;
+  color: #64748b; font-size: 9px; text-align: center;
+  line-height: 1.2;
+}
+.icon-rail .nav-item svg { width: 20px; height: 20px; opacity: .7; }
+.icon-rail .nav-item:hover { background: #1e293b; color: #cbd5e1; }
+.icon-rail .nav-item.active {
+  background: linear-gradient(180deg, #2563eb, #1d4ed8);
+  color: #fff; font-weight: 600;
+}
+.icon-rail .nav-item.active svg { opacity: 1; color: #fff; }
+.crm-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.crm-banner {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  gap: 16px; padding: 20px 28px;
+  background: linear-gradient(90deg, #1e40af 0%, #2563eb 60%, #3b82f6 100%);
+  color: #fff;
+}
+.banner-label { font-size: 11px; opacity: .75; text-transform: uppercase; letter-spacing: .06em; }
+.banner-title { font-size: 22px; font-weight: 700; margin: 2px 0; }
+.banner-sub { font-size: 13px; opacity: .85; }
+.banner-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.banner-actions .search-field { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); }
+.banner-actions .search-field input { color: #fff; width: 160px; }
+.banner-actions .search-field input::placeholder { color: rgba(255,255,255,.55); }
+.banner-actions .search-field svg { color: rgba(255,255,255,.7); }
+.banner-actions .icon-btn { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); color: #fff; }
+.banner-actions .profile-avatar { background: rgba(255,255,255,.2); }
+.banner-actions .profile-info strong, .banner-actions .profile-info span { color: #fff; }
+.banner-actions .profile-info span { opacity: .75; }
+.select-compact {
+  padding: 6px 10px; font-size: 12px; border-radius: 8px;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; font-family: inherit;
+}
+.select-compact option { color: var(--text); background: #fff; }
+.breadcrumb-bar {
+  padding: 10px 28px; font-size: 12px; color: var(--text-muted);
+  background: var(--surface); border-bottom: 1px solid var(--border-light);
+}
+.breadcrumb-bar a { color: var(--text-muted); text-decoration: none; }
+.shell-crm .content { background: #f0f4ff; }
+.shell-crm .sidebar { display: none; }
+@media (max-width: 900px) {
+  .icon-rail { width: 56px; padding: 12px 4px; }
+  .icon-rail .nav-item { width: 48px; font-size: 0; padding: 12px 4px; }
+  .icon-rail .nav-item svg { width: 18px; height: 18px; }
+  .crm-banner { padding: 16px; }
+}
