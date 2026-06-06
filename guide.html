@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>دليل تقني — رابط CRM MVP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --surface: #fff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --code-bg: #1e293b;
+      --code-text: #e2e8f0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Cairo", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 64px; }
+    header {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      padding: 48px 24px;
+      margin-bottom: 32px;
+    }
+    header .wrap { padding: 0 24px; }
+    header h1 { font-size: 28px; margin-bottom: 8px; }
+    header p { opacity: .9; font-size: 15px; }
+    header a { color: #fde68a; text-decoration: none; }
+    header a:hover { text-decoration: underline; }
+    nav.toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    nav.toc h2 { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+    nav.toc ol { padding-right: 20px; }
+    nav.toc li { margin-bottom: 6px; }
+    nav.toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    nav.toc a:hover { text-decoration: underline; }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    section h2 {
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+    }
+    section h3 { font-size: 16px; margin: 20px 0 10px; color: var(--text); }
+    p { margin-bottom: 12px; color: var(--text-secondary); }
+    ul, ol { padding-right: 24px; margin-bottom: 16px; color: var(--text-secondary); }
+    li { margin-bottom: 6px; }
+    code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      direction: ltr;
+      unicode-bidi: embed;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 16px 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 12px 0 16px;
+      direction: ltr;
+      text-align: left;
+    }
+    pre code { background: none; padding: 0; color: inherit; }
+    .file-tree {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      direction: ltr;
+      text-align: left;
+      line-height: 1.7;
+      margin: 12px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 12px 0 16px;
+    }
+    th, td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: right;
+    }
+    th { background: #f1f5f9; font-weight: 600; color: var(--text); }
+    td { color: var(--text-secondary); }
+    .badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .note {
+      background: #fffbeb;
+      border-right: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #92400e;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>دليل تقني — رابط CRM MVP</h1>
+      <p>منصة إدارة علاقات العملاء SaaS — نموذج أولي تفاعلي باللغة العربية (RTL)</p>
+      <p style="margin-top:12px"><a href="index.html">← العودة إلى التطبيق</a></p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="toc">
+      <h2>فهرس المحتويات</h2>
+      <ol>
+        <li><a href="#architecture">البنية المعمارية</a></li>
+        <li><a href="#customization">التخصيص والعلامة التجارية</a></li>
+        <li><a href="#mock-data">تحرير البيانات الوهمية</a></li>
+        <li><a href="#api">واجهة Mock API</a></li>
+        <li><a href="#deployment">النشر والاستضافة</a></li>
+        <li><a href="#scaling">ملاحظات التوسّع</a></li>
+      </ol>
+    </nav>
+
+    <section id="architecture">
+      <h2>1. البنية المعمارية</h2>
+      <p>يتبع المشروع نمط <strong>Single Page Application (SPA)</strong> خفيف الوزن بدون إطار عمل — HTML/CSS/JavaScript vanilla — مع فصل واضح بين العرض والبيانات والأدوات المساعدة.</p>
+
+      <div class="file-tree">crm-platform-mvp/
+├── index.html          ← هيكل الصفحة، الشريط الجانبي، شريط العنوان
+├── guide.html          ← هذا الدليل التقني
+├── css/
+│   └── styles.css      ← مكتبة المكوّنات والثيم (أزرق CRM)
+└── js/
+    ├── utils.js        ← دوال التنسيق (أرقام، عملة، نسب)
+    ├── mock-api.js     ← طبقة بيانات وهمية async
+    └── app.js          ← التوجيه، الصفحات، التفاعلات</div>
+
+      <h3>تدفق البيانات</h3>
+      <p>عند تحميل الصفحة، يُنفَّذ <code>app.js</code> الذي يستدعي دوال <code>CrmAPI</code> من <code>mock-api.js</code>. كل دالة API تُرجع Promise مع تأخير محاكٍ (220–350ms) لمحاكاة الشبكة. النتائج تُحوَّل إلى HTML وتُحقَن في عنصر <code>#view</code>.</p>
+
+      <h3>التوجيه (Routing)</h3>
+      <p>لا يوجد router خارجي — المتغير <code>route</code> في <code>app.js</code> يحدد الصفحة الحالية. القيم المدعومة:</p>
+      <table>
+        <thead><tr><th>المسار</th><th>الصفحة</th><th>الدالة</th></tr></thead>
+        <tbody>
+          <tr><td><code>dashboard</code></td><td>لوحة المتابعة</td><td><code>pageDashboard()</code></td></tr>
+          <tr><td><code>leads</code></td><td>العملاء المحتملون</td><td><code>pageLeads()</code></td></tr>
+          <tr><td><code>deals</code></td><td>الصفقات (Kanban/جدول)</td><td><code>pageDeals()</code></td></tr>
+          <tr><td><code>contacts</code></td><td>جهات الاتصال</td><td><code>pageContacts()</code></td></tr>
+          <tr><td><code>tasks</code></td><td>المهام</td><td><code>pageTasks()</code></td></tr>
+          <tr><td><code>reports</code></td><td>التقارير</td><td><code>pageReports()</code></td></tr>
+          <tr><td><code>settings</code></td><td>الإعدادات</td><td><code>pageSettings()</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>مكوّنات الواجهة</h3>
+      <ul>
+        <li><span class="badge">Shell</span> — <code>.shell</code> يحتوي sidebar + workspace</li>
+        <li><span class="badge">Cards</span> — بطاقات إحصائيات وجداول</li>
+        <li><span class="badge">Kanban</span> — لوحة Kanban لمراحل الصفقات</li>
+        <li><span class="badge">Pipeline</span> — شريط مراحل أفقي</li>
+        <li><span class="badge">Modal</span> — نوافذ تفاصيل الصفقات</li>
+        <li><span class="badge">Toast</span> — إشعارات سريعة</li>
+      </ul>
+    </section>
+
+    <section id="customization">
+      <h2>2. التخصيص والعلامة التجارية</h2>
+
+      <h3>الألوان والخط</h3>
+      <p>عدّل متغيرات CSS في <code>:root</code> داخل <code>css/styles.css</code>:</p>
+      <pre><code>:root {
+  --primary: #2563eb;      /* الأزرق الأساسي */
+  --primary-hover: #1d4ed8;
+  --accent: #f59e0b;       /* الكهرماني */
+  --font: "Cairo", system-ui, sans-serif;
+}</code></pre>
+
+      <h3>العلامة التجارية</h3>
+      <p>في <code>index.html</code>:</p>
+      <ul>
+        <li><code>.brand-org</code> — اسم المنتج: «رابط CRM»</li>
+        <li><code>.brand-sys</code> — الوصف: «منصة إدارة علاقات العملاء SaaS»</li>
+        <li><code>.brand-seal</code> — أيقونة SVG قابلة للاستبدال</li>
+        <li><code>#role-select</code> — أدوار المستخدم (مدير، مندوب، مسؤول)</li>
+      </ul>
+
+      <h3>إضافة صفحة جديدة</h3>
+      <ol>
+        <li>أضف تعريف الصفحة في كائن <code>PAGES</code> داخل <code>app.js</code></li>
+        <li>أنشئ دالة <code>pageXxx()</code> تعرض المحتوى</li>
+        <li>سجّل الدالة في كائن <code>pages</code> داخل <code>render()</code></li>
+        <li>أضف عنصر تنقل في <code>renderNav()</code></li>
+        <li>إن لزم، أضف دوال API في <code>mock-api.js</code></li>
+      </ol>
+
+      <div class="note">جميع النصوص بالعربية مع <code>dir="rtl"</code>. الأرقام تُعرض بالإنجليزية (0–9) عبر class <code>.num</code> ودوال <code>fmt()</code> في utils.js.</div>
+    </section>
+
+    <section id="mock-data">
+      <h2>3. تحرير البيانات الوهمية</h2>
+      <p>جميع البيانات موجودة في <code>js/mock-api.js</code> داخل IIFE <code>CrmAPI</code>. التعديلات تنعكس فوراً عند إعادة تحميل الصفحة.</p>
+
+      <h3>المصفوفات الرئيسية</h3>
+      <table>
+        <thead><tr><th>المصفوفة</th><th>الوصف</th><th>الحقول الأساسية</th></tr></thead>
+        <tbody>
+          <tr><td><code>leads</code></td><td>عملاء محتملون</td><td>id, name, company, source, score, status</td></tr>
+          <tr><td><code>deals</code></td><td>صفقات B2B</td><td>id, title, value (ر.س), stage, probability</td></tr>
+          <tr><td><code>contacts</code></td><td>جهات اتصال</td><td>name, company, email, city, sector</td></tr>
+          <tr><td><code>tasks</code></td><td>مهام</td><td>title, assignee, due, priority, done</td></tr>
+          <tr><td><code>teamMembers</code></td><td>فريق المبيعات</td><td>name, role, quota, achieved</td></tr>
+          <tr><td><code>activities</code></td><td>آخر الأنشطة</td><td>text, time, type</td></tr>
+        </tbody>
+      </table>
+
+      <h3>حالات العملاء المحتملين</h3>
+      <p>القيم المدعومة في <code>status</code>: <code>new</code>، <code>contacted</code>، <code>qualified</code>، <code>lost</code></p>
+
+      <h3>مراحل الصفقات</h3>
+      <p>مُعرَّفة في <code>STAGES</code> و<code>STAGE_ORDER</code>:</p>
+      <pre><code>prospect → proposal → negotiation → won
+                                    ↘ lost</code></pre>
+      <p>دالة <code>advanceDeal(id)</code> تنقل الصفقة للمرحلة التالية وترفع الاحتمالية 15%.</p>
+
+      <h3>مثال: إضافة صفقة جديدة</h3>
+      <pre><code>deals.push({
+  id: "DL-8811",
+  title: "عقد CRM سنوي",
+  company: "شركة مثال",
+  contact: "محمد أحمد",
+  value: 120000,
+  stage: "prospect",
+  probability: 20,
+  owner: "خالد المنصور",
+  closeDate: "2026-04-30",
+  products: "Professional",
+  notes: "تم التواصل الأولي"
+});</code></pre>
+    </section>
+
+    <section id="api">
+      <h2>4. واجهة Mock API</h2>
+      <p>جميع الدوال async وتُرجع نسخاً من البيانات (أو مراجع معدّلة للتفاعلات).</p>
+      <table>
+        <thead><tr><th>الدالة</th><th>المعاملات</th><th>الوصف</th></tr></thead>
+        <tbody>
+          <tr><td><code>getDashboard()</code></td><td>—</td><td>إحصائيات، رسم بياني، أنشطة، ملخص المراحل</td></tr>
+          <tr><td><code>getLeads(filter)</code></td><td>all | new | contacted | qualified | lost</td><td>قائمة العملاء المحتملين</td></tr>
+          <tr><td><code>qualifyLead(id)</code></td><td>معرّف العميل</td><td>تأهيل عميل (new/contacted → qualified)</td></tr>
+          <tr><td><code>getDeals(stage)</code></td><td>all | prospect | ... | lost</td><td>قائمة الصفقات</td></tr>
+          <tr><td><code>advanceDeal(id)</code></td><td>معرّف الصفقة</td><td>تقديم مرحلة الصفقة</td></tr>
+          <tr><td><code>getContacts(q)</code></td><td>نص بحث</td><td>دليل جهات الاتصال</td></tr>
+          <tr><td><code>getTasks(filter)</code></td><td>all | open | done</td><td>قائمة المهام</td></tr>
+          <tr><td><code>toggleTask(id)</code></td><td>معرّف المهمة</td><td>تبديل حالة الإكمال</td></tr>
+          <tr><td><code>getReports()</code></td><td>—</td><td>بلاطات التقارير</td></tr>
+          <tr><td><code>getSettings()</code></td><td>—</td><td>مراحل، فريق، تكاملات</td></tr>
+        </tbody>
+      </table>
+
+      <h3>الانتقال إلى Backend حقيقي</h3>
+      <p>استبدل محتوى <code>mock-api.js</code> بطبقة fetch:</p>
+      <pre><code>async getDeals(stage = "all") {
+  const res = await fetch(`/api/deals?stage=${stage}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.json();
+}</code></pre>
+      <p>احتفظ بنفس أسماء الدوال وشكل الاستجابة — <code>app.js</code> لن يحتاج تعديلاً كبيراً.</p>
+    </section>
+
+    <section id="deployment">
+      <h2>5. النشر والاستضافة</h2>
+
+      <h3>تشغيل محلي</h3>
+      <p>افتح <code>index.html</code> مباشرة في المتصفح، أو استخدم خادم محلي:</p>
+      <pre><code># Python
+python -m http.server 8080
+
+# Node.js (npx)
+npx serve .
+
+# VS Code Live Server
+# انقر بزر الماوس الأيمن على index.html → Open with Live Server</code></pre>
+      <p>ثم افتح: <code>http://localhost:8080</code></p>
+
+      <h3>GitHub Pages</h3>
+      <ol>
+        <li>أنشئ مستودع GitHub وارفع محتويات المجلد</li>
+        <li>Settings → Pages → Source: Deploy from branch (main)</li>
+        <li>Root directory: <code>/</code> أو <code>/crm-platform-mvp</code></li>
+        <li>الرابط: <code>https://username.github.io/repo-name/</code></li>
+      </ol>
+
+      <h3>Netlify / Vercel</h3>
+      <p>اسحب المجلد إلى لوحة Netlify Drop، أو:</p>
+      <pre><code># netlify.toml (اختياري)
+[build]
+  publish = "."
+# لا build command — موقع static</code></pre>
+
+      <h3>متطلبات الاستضافة</h3>
+      <ul>
+        <li>Static hosting فقط — لا Node.js مطلوب</li>
+        <li>HTTPS موصى به</li>
+        <li>خط Cairo يُحمَّل من Google Fonts (يتطلب اتصال إنترنت)</li>
+      </ul>
+    </section>
+
+    <section id="scaling">
+      <h2>6. ملاحظات التوسّع</h2>
+
+      <h3>من MVP إلى منتج</h3>
+      <ul>
+        <li><strong>Backend:</strong> Node.js/Express أو .NET أو Laravel مع PostgreSQL — جداول: leads, deals, contacts, tasks, activities, users</li>
+        <li><strong>المصادقة:</strong> JWT + RBAC (admin, manager, rep) — selector الأدوار الحالي placeholder</li>
+        <li><strong>Real-time:</strong> WebSockets لتحديث Kanban بين أعضاء الفريق</li>
+        <li><strong>التكاملات:</strong> Microsoft Graph، SAP، WhatsApp Business API</li>
+        <li><strong>التقارير:</strong> تصدير PDF/Excel عبر backend أو jsPDF</li>
+      </ul>
+
+      <h3>تحسينات Frontend</h3>
+      <ul>
+        <li>استبدال SPA اليدوي بـ React/Vue مع React Router</li>
+        <li>State management (Zustand/Pinia) بدل mutating arrays</li>
+        <li>Virtual scrolling للجداول الكبيرة</li>
+        <li>Drag-and-drop Kanban (SortableJS)</li>
+        <li>i18n لدعم EN/AR</li>
+      </ul>
+
+      <h3>الأمان والامتثال</h3>
+      <ul>
+        <li>تشفير البيانات الحساسة (PII) في قاعدة البيانات</li>
+        <li>Audit log لكل تغيير على الصفقات</li>
+        <li>الامتثال لنظام حماية البيانات الشخصية السعودي (PDPL)</li>
+        <li>Rate limiting على API</li>
+      </ul>
+
+      <h3>الأداء</h3>
+      <ul>
+        <li>تجميع CSS/JS في ملف واحد للإنتاج</li>
+        <li>Cache headers للملفات الثابتة</li>
+        <li>CDN لخط Cairo محلياً إن لزم</li>
+        <li>Pagination/server-side filtering للقوائم الطويلة</li>
+      </ul>
+
+      <div class="note">هذا MVP مصمم للعرض في Portfolio وDemo — البيانات وهمية ولا تُخزَّن بين الجلسات (إلا أثناء الجلسة الحالية في الذاكرة).</div>
+    </section>
+
+    <footer>
+      رابط CRM MVP v2.4.0 — دليل تقني — بيانات وهمية للعرض فقط
+    </footer>
+  </div>
+</body>
+</html>
